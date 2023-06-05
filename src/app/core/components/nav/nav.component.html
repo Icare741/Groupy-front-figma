@@ -1,28 +1,106 @@
-<nav class="bg-white shadow-lg">
-    <div class=" mx-auto ">
-        <div class="flex items-center justify-between h-16 ">
+<nav class="bg-white shadow-lg ">
+    <div class=" container mx-auto fixed">
+        <div class="flex items-center  justify-between h-16">
             <div class="flex-shrink-0 p-4">
                 <img class="h-10 w-15" src="assets/logo.png" alt="Logo">
             </div>
+
             <div class="hidden md:block">
                 <div class="flex items-baseline space-x-4">
-                    <div class="text-gray-600 hover:text-gray-900 hover:bg-graybackground px-3 py-2 rounded-md text-sm font-medium flex space-x-2"><img src="assets/iconusergray.png"><a>NextoYoubers</a></div>
-                    <div class="text-gray-600 hover:text-gray-900 hover:bg-graybackground px-3 py-2 rounded-md text-sm font-medium flex space-x-2"><img src="assets/iconrestaurant.png"> <a>Restaurants</a></div>
-                    <div class="text-gray-600 hover:text-gray-900 hover:bg-graybackground px-3 py-2 rounded-md text-sm font-medium flex space-x-2"><img src="assets/icontaxi.png"> <a>Taxi& VTC</a></div>
+                    <div
+                        class="text-gray-600 hover:text-gray-900 hover:bg-graybackground px-3 py-2 rounded-md text-sm font-bold flex space-x-2">
+                        <img src="assets/iconusergray.png"><a>Chiffres</a>
+                    </div>
+                    <div
+                        class="text-gray-600 hover:text-gray-900 hover:bg-graybackground px-3 py-2 rounded-md text-sm font-bold flex space-x-2">
+                        <img src="assets/iconrestaurant.png"> <a>Fonctionnalités</a>
+                    </div>
+                    <div
+                        class="text-gray-600 hover:text-gray-900 hover:bg-graybackground px-3 py-2 rounded-md text-sm font-bold flex space-x-2">
+                        <img src="assets/icontaxi.png"> <a>Témoignages</a>
+                    </div>
                 </div>
             </div>
-            <div class="hidden md:block">
-                <div class="flex items-center ">
-
-                    <button type="button"
-                        class="ml-2 border-solid border-2 border-blue-500 rounded-full p-2 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 flex items-center">
-
-                        <svg class="h-6 w-6 text-gray-600" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                            <path d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                        <img class="h-8 w-8 rounded-full" src="assets/imageProfile.png" alt="Profile Picture">
-                    </button>
-                </div>
+            <!-- Bouton d'ouverture du menu -->
+            <div class="block md:hidden">
+                <button class="btn-custom" [ngClass]="{'menu-open': isOpen, 'menu-closed': !isOpen}"
+                    (click)="toggleMenu()" style="z-index: 999;">
+                    <i [ngClass]="{'menu-icon-open': isOpen, 'menu-icon-closed': !isOpen}" class="material-icons "
+                        style="font-size: 30px;">{{ isOpen ? 'close' : 'menu' }}</i>
+                </button>
             </div>
         </div>
+
+        <!-- Menu latéral coulissant -->
+        <div class="fixed inset-y-0 right-0 flex flex-col justify-between  text-white w-96 h-full z-50 transform transition-transform duration-300"
+            [class.translate-x-0]="isOpen" [class.translate-x-full]="!isOpen">
+
+            <!-- Logo et bouton sur la même ligne -->
+            <div class="relative py-14 px-6 flex items-center justify-center bg-orange-400">
+                <img src="assets/general_header_logo_nextoyou_connecte_l_couleurs.png" alt="Logo" class="w-32 h-34">
+
+
+            </div>
+
+            <!-- Liens du menu -->
+            <nav class="flex-1">
+                <ul class="space-y-0 border-2 border-BorderBlueBackground ">
+                    <li>
+                        <a [routerLink]="['']" class="block py-6 px-6 border-2 border-BorderBlueBackground text-TextDarkBlue bg-white
+                            font-nunito font-semibold text-xl leading-6 ">
+                            <i class="material-icons mr-2 text-BorderBlueBackground">home</i>Accueil
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="block py-6 px-6 border-2 border-BorderBlueBackground text-TextDarkBlue bg-white
+                            font-nunito font-semibold text-xl leading-6">
+                            <i class="material-icons mr-2 text-gray-300">arrow_forward_ios </i>
+                            <i class="material-icons mr-2 text-BorderBlueBackground">groups</i>Chiffres
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="block py-6 px-6 border-2 border-BorderBlueBackground text-TextDarkBlue bg-white
+                            font-nunito font-semibold text-xl leading-6">
+                            <i class="material-icons mr-2 text-gray-300">arrow_forward_ios </i>
+                            <i class="material-icons mr-2 text-BorderBlueBackground">settings</i>Fonctionnalités
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="block py-6 px-6 border-2 border-BorderBlueBackground text-TextDarkBlue bg-white
+                            font-nunito font-semibold text-xl leading-6">
+                            <i class="material-icons mr-2 text-gray-300">arrow_forward_ios </i>
+                            <i class="material-icons mr-2 text-BorderBlueBackground">star_half</i>Témoignages
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="block py-6 px-6 border-2 border-BorderBlueBackground text-TextDarkBlue bg-white
+                            font-nunito font-semibold text-xl leading-6">
+                            <i class="material-icons mr-2 text-gray-300">arrow_forward_ios </i>
+                            <i class="material-icons mr-2 text-BorderBlueBackground">help</i>Besoin d'aide
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+        
+        
     </div>
+    <div class="fixed-buttons fixed bottom-1/4 left-0 right-0 flex flex-col justify-center items-center">
+        <div class="flex items-center space-x-2">
+            <button class="btn-connect bg-blue-500 text-white px-4 py-2 rounded">Se connecter</button>
+            <button class="btn-scroll-top bg-orange-500 text-white px-4 py-2 rounded-full h-10 w-10 flex items-center justify-center">
+                <i class="material-icons">keyboard_arrow_up</i>
+            </button>
+        </div>
+        <div class="flex items-center space-x-2">
+            <button class="btn-nextoyoutuber bg-red-500 text-white px-4 py-2 rounded">Devenez Nextoyoutuber</button>
+            <button class="btn-menu bg-orange-500 text-white px-4 py-2 rounded-full h-10 w-10 flex items-center justify-center">
+                <i class="material-icons">menu</i>
+            </button>
+        </div>
+    </div>
+    
+    
+    <div class="h-screen bg-white"></div>
+</nav>
